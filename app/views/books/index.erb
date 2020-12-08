@@ -1,1 +1,9 @@
-<h1>This is the Model's index page.</h1>
+<h1> Books!  </h1>
+<h2> Index View </h2>
+<% if logged_in?  %>
+  <h3>Logged in user:  <%= current_user.email %></h3>
+<% end %>
+<% @books.each do |b|  %> 
+
+  <%= b.id %> -  <a href="/books/<%=b.id%>"><%=b.title %></a> <br>
+<% end %>

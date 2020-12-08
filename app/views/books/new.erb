@@ -1,1 +1,12 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Insert the form to create a new instance of book.</h1>
+
+<form method="POST" action="/books">
+    Title: <input type="text" name="title">
+   Book: 
+    <select name="book_id">
+        <%Book.all.each do |book| %>
+            <option value="<%=book.id %>"><%=book.name %></option>
+        <% end %>
+    </select>
+    <input type="submit" value="Create Book">
+</form>
