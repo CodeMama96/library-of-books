@@ -10,23 +10,27 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    "Welcome!"
+    #erb :welcome
+   erb :"/users/index"
   end
 
-  helpers do  #allows our views to access these methods 
+  helpers do 
 
   def logged_in?
       !!current_user
   end
 
-  def current_user   #memoization
+  def current_user 
       @current_user ||=  User.find(session[:user_id]) if session[:user_id]
-  #    if @current_user
-  #      @current_user 
-  #    else 
-  #     @current_user =  User.find(session[:user_id])
-  #    end
   end
+
+  post "/books/:id" do
+    @book = Book.find(params["id"]) 
+    @book.update(params["book"])
+    erb :"/books/new"
+  end
+  #Still confused why error message wanted a post method here
+
 end
 
 end

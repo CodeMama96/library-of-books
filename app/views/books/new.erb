@@ -5,8 +5,8 @@
    Book: 
     <select name="book_id">
         <%Book.all.each do |book| %>
-            <option value="<%=book.id %>"><%=book.name %></option>
+            <option value="<%=book.id %>"><%=book.title %></option>
         <% end %>
-    </select>
+    </select></br>
     <input type="submit" value="Create Book">
 </form>

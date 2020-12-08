@@ -11,10 +11,9 @@ post "/signup" do
     if user.email.blank? || user.password.blank? || User.find_by_email(params["email"])
        redirect '/signup'
     else
-        #valid attempt 
         user.save 
         session[:user_id] = user.id# "log them in"
-        redirect '/books' # redirect them elsewhere 
+        redirect '/books'
     end
     
 end
