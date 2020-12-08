@@ -20,9 +20,8 @@ class BooksController < ApplicationController
 
 #CREATE a new book
   post '/books' do
-    book = Book.new(params)
-    binding.pry
-    book.save
+    @book = Book.new(title: params["title"])
+    @book.save
     redirect '/books'
   end
 
@@ -32,10 +31,7 @@ class BooksController < ApplicationController
     erb :"/books/edit"
   end
 
-  #POST
-   # UPDATE 1 book based on the edit form 
 
-   #POST 
   patch '/books/:id' do
     @book = Book.find_by_id(params[:id])
     @book.title = params[:title]
@@ -44,12 +40,6 @@ class BooksController < ApplicationController
     redirect to "/books/#{@book.id}"
   end 
 
-#   <form action="/books/<%= @book.id %>" method="post">
-#   <input id="hidden" type="hidden" name="_method" value="patch">
-#   <input type="text" name="title">
-#   <input type="text" name="author">
-#   <input type="submit" value="submit">
-# </form> 
    
   put '/books/:id' do
     @book = Book.find(params["id"]) 
@@ -57,11 +47,11 @@ class BooksController < ApplicationController
     redirect "/books/#{@book.id}"
   end
   
-  delete "/books/:id/delete" do
+  delete "/books/:id" do
     @book = Book.find(params["id"])
     @book.destroy
     redirect "/books"
   end
 
-  #PATCH
+
 end

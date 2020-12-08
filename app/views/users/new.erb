@@ -2,6 +2,7 @@
 <h1>Create a new book</h1>
 <form method="POST" action="/books">
     Title: <input type="text" name="title">
+    Author: <input type="text" name="author">
    Book: 
     <select name="book_id">
         <%Book.all.each do |book| %>
