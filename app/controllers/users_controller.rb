@@ -22,15 +22,18 @@ post '/login' do
     session[:user_id] = @user.id
     redirect to '/books'
   else
-    redirect to '/'
+    redirect '/'
   end
 end
-
-
 
 get '/logout' do 
     session.delete(:user_id)  # delete just the user_id 
     # session.clear 
     redirect '/signup'
 end
+
+
+private
+
+
 end
