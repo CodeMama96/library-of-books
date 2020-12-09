@@ -1,7 +1,7 @@
-<h1> Books!  </h1>
-<h2> Index View </h2>
+<br> <p style="font-size:35px">Here are your Books!  </p>
+
 <% if logged_in?  %>
-  <h3>Logged in user:  <%= current_user.email %></h3>
+<p style="font-size:30px">Logged in user:  <%= current_user.email %></p>
 <% end %>
 <% @books.each do |b|  %> 
 

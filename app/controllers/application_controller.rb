@@ -25,11 +25,4 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  # post "/books/:id" do
-  #    @book = Book.find(params["id"]) 
-  #    #@book.update(params["book"])
-  #   erb :"/books/show"
-  # end
-  # #why does error message want a post method here?
-
 end
