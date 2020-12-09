@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
   # GET: /books
   get "/books" do
-    @books = Book.all
+    @books = current_user.books 
     erb :"/books/index"
   end
 
@@ -21,6 +21,7 @@ class BooksController < ApplicationController
 #CREATE a new book
   post '/books' do
     @book = Book.new(title: params["title"])
+    #foreign key
     @book.save
     redirect '/books'
   end
@@ -53,5 +54,12 @@ class BooksController < ApplicationController
     redirect "/books"
   end
 
-
+  get "/users/:id" do # get info on idv. user
+    if !logged_in?
+      redirect "/login"
+    end
+    @user = User.find_by(params["user_id"]) 
+    @books = Book.find_by(params["user_id"]) # added 
+    erb :"/users/show"
+  end
 end

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 get '/signup' do
-  erb :"users/new"
+  @books =Book.all 
+  erb :"users/index"
 end
 
 post "/signup" do 
@@ -16,6 +17,9 @@ post "/signup" do
   end
 end
 
+get '/login' do
+  erb :"users/index"
+end
 post '/login' do
   @user = User.find_by(email: params["email"])
   if @user && @user.authenticate(params[:password])
@@ -33,6 +37,15 @@ get '/logout' do
 end
 
 
+# get 'books/index' do
+#   @books =Book.all 
+#   @users = User.all
+#   @user_book = []
+#   @books.each do |u|
+#     @user_book << u.user_id
+#   end
+#   erb :"/users/index"
+# end
 private
 
 
