@@ -3,15 +3,19 @@
 <% if logged_in?  %>
 <p style="font-size:30px">Logged in user:  <%= current_user.email %></p>
 <% end %>
-<% @books.each do |b|  %> 
+<%#How can I have them have the option to add more books here
+
+For some reason lines below arent being listed at all%>
+ <a href="/books/new">Add New Books Here</a>
+<% @current_user_books.each do |b|  %> 
 
   <%= b.id %> -  <a href="/books/<%=b.id%>"><%=b.title %></a> <br>
 
-
-
 <% end %>
+
 
 </br>
 <a href="/logout">Log Out</a>
 
 </form>
+ 

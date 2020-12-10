@@ -2,8 +2,16 @@ class BooksController < ApplicationController
 
   # GET: /books
   get "/books" do
-    @books = current_user.books 
-    erb :"/books/index"
+    #@books = Book.all
+    # erb :"/books/index"
+    if logged_in?
+      @current_user_books = current_user.books.all
+      erb :"/books/index"
+      else 
+        erb :welcome
+
+        #Added if logged_in?, hasn't done anything yet...
+    end
   end
 
   # GET: /books/new
@@ -20,10 +28,14 @@ class BooksController < ApplicationController
 
 #CREATE a new book
   post '/books' do
-    @book = Book.new(title: params["title"])
+    @book = Book.new(title: params["title"], author: params["author"])
     #foreign key
-    @book.save
-    redirect '/books'
+    if @book.save
+      redirect "/recipes/#{@book.id}"
+    else 
+      redirect'/books/new'
+    end
+    #changed this to an if statement as well, nothing has happened yet, check if any future errors come
   end
 
   # UPDATE a book
@@ -34,13 +46,24 @@ class BooksController < ApplicationController
 
 
   patch '/books/:id' do
-    @book = Book.find_by_id(params[:id])
-    @book.title = params[:title]
-    @book.author = params[:author]
-    @book.save
-    redirect to "/books/#{@book.id}"
+    # @book = Book.find_by_id(params[:id])
+    # @book.title = params[:title]
+    # @book.author = params[:author]
+    # @book.save
+    # redirect to "/books/#{@book.id}"
+
+    @book = book.find_by_id(params[:id])
+    params.delete("_method")
+    if @book.user.id == current_user.id && @book.update(title: params[:title], author: params[:author], user_id: current_user.id)
+      redirect "/books/#{@book.id}"
+    else
+      redirect "/books/#{@book.id}/edit"
+    end
+
   end 
 
+
+### Still confused about this patch method
    
   put '/books/:id' do
     @book = Book.find(params["id"]) 
@@ -54,7 +77,7 @@ class BooksController < ApplicationController
     redirect "/books"
   end
 
-  get "/users/:id" do # get info on idv. user
+  get "/users/:id" do # get info on each user
     if !logged_in?
       redirect "/login"
     end

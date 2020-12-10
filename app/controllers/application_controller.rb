@@ -10,8 +10,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-   # erb :welcome
-   erb :"/users/index"
+
+    erb :welcome
+   ### Have some sort of redirect? 
   end
 
   helpers do 
