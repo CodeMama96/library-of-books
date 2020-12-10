@@ -7,7 +7,7 @@
 
 For some reason lines below arent being listed at all%>
  <a href="/books/new">Add New Books Here</a>
-<% @current_user_books.each do |b|  %> 
+<% @books.each do |b|  %> 
 
   <%= b.id %> -  <a href="/books/<%=b.id%>"><%=b.title %></a> <br>
 

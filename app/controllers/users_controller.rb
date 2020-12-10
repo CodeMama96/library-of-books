@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 get '/signup' do
-  @books =Book.all 
+  #@books =Book.all 
   erb :"users/index"
 end
 
@@ -14,7 +14,7 @@ post "/signup" do
 
   else
       user.save 
-      session[:user_id] = user.id # "log them in"
+      session[:user_id] = user.id # "log them in" #storing them inside the session, stored inside a cookie
       redirect '/books'
   end
 end
@@ -40,17 +40,14 @@ get '/logout' do
     redirect to '/signup'
 end
 
-
-# get 'books/index' do
-#   @books =Book.all 
-#   @users = User.all
-#   @user_book = []
-#   @books.each do |u|
-#     @user_book << u.user_id
-#   end
-#   erb :"/users/index"
-# end
-private
+get "/users/:id" do # get info on each user #argument for a method
+  if !logged_in?
+    redirect "/login"
+  end
+  @user = User.find_by_id(params["id"]) 
+  @books = Book.find_by(params["user_id"]) # added 
+  erb :"/users/show"
+end
 
 
 end
