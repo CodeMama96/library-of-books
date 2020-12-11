@@ -46,7 +46,7 @@ get "/users/:id" do # get info on each user #argument for a method
   end
   @user = User.find_by_id(params["id"]) 
   @books = Book.find_by(params["user_id"]) # added 
-  erb :"/users/show"
+  #erb :"/users/edit"
 end
 
 

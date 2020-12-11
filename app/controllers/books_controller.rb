@@ -12,18 +12,28 @@ class BooksController < ApplicationController
 
   # GET: /books/new
   get "/books/new" do
-    
-    erb :"/books/new"
+    if logged_in?
+      erb :"/books/new"
+    else
+      redirect '/'
+    end
   end
-
 
   # GET: /books/5
   get "/books/:id" do
-    @book = Book.find(params["id"])
     if logged_in?
-      @books = current_user.books
+      @books = Book.all
+      @book = Book.find_by_id(params["id"])
       erb :"/books/show"
     else 
+      redirect '/'
+    end
+  end
+
+  get "/books/all" do
+    if logged_in?
+      erb :"/books/all"
+    else
       redirect '/'
     end
   end
@@ -31,10 +41,14 @@ class BooksController < ApplicationController
     #CREATE a new book
   post '/books' do
     @book = Book.new(title: params["title"], author: params["author"], user_id: session[:user_id])
-      if @book.save
-        redirect "/books/#{@book.id}"
-      else 
-        redirect'/books/new'
+      if logged_in?
+        if @book.save
+          redirect "/books/#{@book.id}"
+        else 
+          redirect'/books/new'
+        end
+      else
+        redirect '/'
       end
     end
 
@@ -52,7 +66,6 @@ class BooksController < ApplicationController
     @book = Book.find(params["id"]) 
     if @book.user.id == current_user.id 
       @book.update(params["book"])
-  
     end
       redirect "/books/#{@book.id}"
     end

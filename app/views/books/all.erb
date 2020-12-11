@@ -1,0 +1,8 @@
+<h1> Lists all books </h1></br>
+
+
+<% @books.each do |b|  %> 
+
+   <ol><a href="/books/<%=b.id%>"><%=b.title %></a> </ol><br>
+ 
+ <% end %>
