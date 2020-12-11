@@ -9,13 +9,11 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'variousrandomletters'
   end
 
-  get "/" do
-
+  get "/" do #get mthod with a '/' as an argument and it's being rendered to the welcome page
     erb :welcome
-   ### Have some sort of redirect? 
   end
 
-  helpers do 
+  helpers do #helper methods that can be use anywhere within the application
 
     def logged_in?
         !!current_user
@@ -23,6 +21,7 @@ class ApplicationController < Sinatra::Base
 
     def current_user 
         @current_user ||=  User.find(session[:user_id]) if session[:user_id]
+        #storing them inside the session, stored inside a cookie
     end
     
   end

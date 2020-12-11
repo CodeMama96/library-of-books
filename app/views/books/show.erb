@@ -1,7 +1,8 @@
 <h2>Here are your books!</h2>
+<br>
 <h3>Title: <%= @book.title %> </h3>
 <h3>Author: <%= @book.author %> </h3>
-
+<br>
 <a href="/books/<%= @book.id %>/edit">Edit</a>
 
 <form method="POST" action="/books/<%= @book.id %>">

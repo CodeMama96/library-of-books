@@ -6,14 +6,14 @@
 <%#How can I have them have the option to add more books here
 
 For some reason lines below arent being listed at all%>
- <a href="/books/new">Add New Books Here</a>
+ 
 <% @books.each do |b|  %> 
 
   <%= b.id %> -  <a href="/books/<%=b.id%>"><%=b.title %></a> <br>
 
 <% end %>
-
-
+</br>
+<a href="/books/new">Add New Books Here</a><br>
 </br>
 <a href="/logout">Log Out</a>
 

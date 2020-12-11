@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
   # GET: /books
   get "/books" do
-    if logged_in?
+    if logged_in?     
       @books = current_user.books
       erb :"/books/index"
       else 
@@ -21,13 +21,11 @@ class BooksController < ApplicationController
     @book = Book.find(params["id"])
 
     if logged_in?
-    @books = current_user.books
-    erb :"/books/show"
+      @books = current_user.books
+      erb :"/books/show"
     else 
-    redirect '/'
-
+      redirect '/'
     end
-
   end
 
     #CREATE a new book
@@ -54,6 +52,7 @@ class BooksController < ApplicationController
     @book = Book.find(params["id"]) 
     if @book.user.id == current_user.id 
       @book.update(params["book"])
+  
     end
       redirect "/books/#{@book.id}"
     end
@@ -64,9 +63,6 @@ class BooksController < ApplicationController
       @book.destroy
     end
     redirect "/books"
-  end
-
-  
-  # and if statements if that person is logged into that app
+    end
 
 end
