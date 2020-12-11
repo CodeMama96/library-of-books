@@ -12,6 +12,7 @@ class BooksController < ApplicationController
 
   # GET: /books/new
   get "/books/new" do
+    
     erb :"/books/new"
   end
 
@@ -19,7 +20,6 @@ class BooksController < ApplicationController
   # GET: /books/5
   get "/books/:id" do
     @book = Book.find(params["id"])
-
     if logged_in?
       @books = current_user.books
       erb :"/books/show"

@@ -9,7 +9,7 @@ For some reason lines below arent being listed at all%>
  
 <% @books.each do |b|  %> 
 
-  <%= b.id %> -  <a href="/books/<%=b.id%>"><%=b.title %></a> <br>
+  <ol> <a href="/books/<%=b.id%>"><%=b.title %></a> </ol><br>
 
 <% end %>
 </br>
