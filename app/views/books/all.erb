@@ -1,8 +1,8 @@
-<h1> Lists all books </h1></br>
+<h1> Here Are All The Books </h1></br>
 
 
 <% @books.each do |b|  %> 
 
-   <ol><a href="/books/<%=b.id%>"><%=b.title %></a> </ol><br>
+   <li><a href="/books/<%=b.id%>"><%=b.title %></a> </li>
  
  <% end %>

@@ -11,3 +11,5 @@ Start with Bundle Install in the terminal to install all gems in the gemfile. Th
 Flatiron Iron Instructor: Jenn H.
 
 # link to license 
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.

@@ -19,6 +19,15 @@ class BooksController < ApplicationController
     end
   end
 
+  get "/books/all" do
+    if logged_in?
+      @books = Book.all
+      erb :"/books/all"
+    else
+      redirect '/'
+    end
+  end
+
   # GET: /books/5
   get "/books/:id" do
     if logged_in?
@@ -26,14 +35,6 @@ class BooksController < ApplicationController
       @book = Book.find_by_id(params["id"])
       erb :"/books/show"
     else 
-      redirect '/'
-    end
-  end
-
-  get "/books/all" do
-    if logged_in?
-      erb :"/books/all"
-    else
       redirect '/'
     end
   end
@@ -58,6 +59,7 @@ class BooksController < ApplicationController
       if @book.user.id == current_user.id
         erb :"/books/edit"
       else
+        flash[:message] = "You cannot edit this book!"
         redirect '/'
       end
     end
@@ -75,6 +77,7 @@ class BooksController < ApplicationController
     if @book.user.id == current_user.id 
       @book.destroy
     end
+    flash[:message] = "You cannot delete this book!"
     redirect "/books"
     end
 

@@ -6,3 +6,7 @@
     Author: <input type="text" name="book[author]" value="<%= @book.author%>" >
     <input type="submit" value="Update Book">
 </form>
+
+<% if flash.has?(:message) %>
+   <p><%= flash[:message] %></p>
+<% end %>

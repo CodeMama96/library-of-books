@@ -3,19 +3,18 @@
 <% if logged_in?  %>
 <p style="font-size:30px">Logged in user:  <%= current_user.email %></p>
 <% end %>
-<%#How can I have them have the option to add more books here
-
-For some reason lines below arent being listed at all%>
- 
+<br>
+<% if flash.has?(:message) %>
+   <p style="color: red"><%= flash[:message] %></p>
+<% end %>
+<br>
 <% @books.each do |b|  %> 
 
   <ol> <a href="/books/<%=b.id%>"><%=b.title %></a> </ol><br>
 
 <% end %>
 </br>
-<a href="/books/new">Add New Books Here</a><br>
-</br>
-<a href="/logout">Log Out</a>
+
 
 </form>
  
