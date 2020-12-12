@@ -10,5 +10,7 @@ end
 
 #using the validates meant I got to remove all the code on the
 #controller that was if_blank || blah blah blah && !something else
-#uniqueness makes sure the same username isn't used twice. i also put that for email.
+#uniqueness makes sure the same email isn't used twice.
 #and then that message shows if it violates
+
+

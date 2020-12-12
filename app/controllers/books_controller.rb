@@ -76,8 +76,9 @@ class BooksController < ApplicationController
     @book = Book.find(params["id"])
     if @book.user.id == current_user.id 
       @book.destroy
-    end
+    else
     flash[:message] = "You cannot delete this book!"
+    end
     redirect "/books"
     end
 

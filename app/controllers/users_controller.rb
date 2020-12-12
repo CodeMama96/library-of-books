@@ -1,17 +1,13 @@
 class UsersController < ApplicationController
 
 get '/signup' do
-  #@books =Book.all 
   erb :"users/index"
 end
 
 post "/signup" do 
   user = User.new(email: params["email"], password: params["password"])
-
   if user.email.blank? || user.password.blank? || User.find_by_email(params["email"])
-      #"flash[:message = "Please use your correct email or password!"
     redirect '/signup'
-
   else
       user.save 
       session[:user_id] = user.id # "log them in" #storing them inside the session, stored inside a cookie
