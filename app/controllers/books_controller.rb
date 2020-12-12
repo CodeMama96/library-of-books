@@ -60,7 +60,7 @@ class BooksController < ApplicationController
         erb :"/books/edit"
       else
         flash[:message] = "You cannot edit this book!"
-        redirect '/'
+        redirect '/books'
       end
     end
    
