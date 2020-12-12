@@ -2,16 +2,16 @@
 
 Specs:
 - [x] Use Sinatra to build the app
-- [x] Use ActiveRecord for storing information in a database
-- [x] Include more than one model class (e.g. User, Post, Category)
-- [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
-- [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
-- [x] Include user accounts with unique login attribute (username or email)
-- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [x] Ensure that users can't modify content created by other users
+- [x] Use ActiveRecord for storing information in a database -ActiveRecord is both my book.rd and user.rb files
+- [x] Include more than one model class (e.g. User, Post, Category) - I have a Book and User class
+- [x] Include at least one has_many relationship on your User model (e.g. User has_many Posts) -My User class has a has_many relationship with books
+- [x] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User) - The Book class has a belongs_to relationship to the user
+- [x] Include user accounts with unique login attribute (username or email) -My emails have unique ID's where they can only edit and delete their own books.
+- [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying - All CRUD routes are used for the belongs_to resource
+- [x] Ensure that users can't modify content created by other users -
 - [x] Include user input validations
 - [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code -READ.md is complete
 
 Confirm
 - [x] You have a large number of small Git commits
