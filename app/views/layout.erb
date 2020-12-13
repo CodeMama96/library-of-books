@@ -17,6 +17,11 @@
   <body>
     <div class="wrapper" style="margin-left: 15px;">
     <p style="font-size:50px"> Fleet of Books </p>
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+       <p style="color: red"> <%= flash[type] %></p>
+      </div>
+    <% end %>
         <%= yield %>
         <%if session[:user_id]%>
         <a href="/books/new">Add New Books Here</a><br>
@@ -24,7 +29,7 @@
         <a href="/logout">Log Out</a>
         <%end%>
       <footer class="branding">
-        <small>&copy; 2020 <strong>LibraryOfBooks</strong></small>
+        <hr><small>&copy; 2020 <strong>LibraryOfBooks</strong></small></hr>
       </footer>
     </div>
 

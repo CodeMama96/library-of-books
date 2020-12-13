@@ -4,16 +4,31 @@ get '/signup' do
   erb :"users/index"
 end
 
-post "/signup" do 
-  user = User.new(email: params["email"], password: params["password"])
-  if user.email.blank? || user.password.blank? || User.find_by_email(params["email"])
-    redirect '/signup'
+# post "/signup" do 
+#   user = User.new(email: params["email"], password: params["password"])
+#   if user.email.blank? || user.password.blank? || User.find_by_email(params["email"])
+#     redirect '/signup'
+#   else
+#       user.save 
+#       session[:user_id] = user.id # "log them in" #storing them inside the session, stored inside a cookie
+#       redirect '/books'
+#   end
+# end
+
+post "/signup" do
+  user = User.new(params) 
+  if !user.save
+    flash[:message] = "Wrong email or password." #user.errors.full_messages.join(" // ")
+    redirect "/signup"
   else
-      user.save 
-      session[:user_id] = user.id # "log them in" #storing them inside the session, stored inside a cookie
-      redirect '/books'
+      user.save
+      flash[:message] = "Signup successful. Please login now."
+      session[:user_id] = user.id 
+      redirect "/books"
   end
 end
+
+
 
 get '/login' do
   erb :"users/index"
@@ -22,11 +37,15 @@ end
 post '/login' do
   @user = User.find_by(email: params["email"])
   if @user && @user.authenticate(params[:password])
+    #In the code below, we see how we can ensure that we have a User AND that that User
+    #is authenticated. If the user authenticates, we'll set the session[:password] and
+    # redirect to the /books route. Otherwise, we'll redirect to the '/'' route
+    # so our user can try again.
     session[:user_id] = @user.id
     redirect to '/books'
   else
-    #flash[:error] = "Please use correct email or password!"
-    redirect to '/'
+    flash[:error] = "Please use correct email or password!"
+    redirect to '/signup'
   end
 end
 
