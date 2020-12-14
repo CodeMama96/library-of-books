@@ -13,6 +13,11 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  not_found do 
+    status 400
+    erb :error
+  end
+
   helpers do #helper methods that can be use anywhere within the application
 
     def logged_in?

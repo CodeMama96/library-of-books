@@ -1,8 +1,6 @@
-<h1> Here Are All The Books </h1></br>
+<h1> Here Are All The Books </h1><br>
 
 
 <% @books.each do |b|  %> 
-
-   <li><a href="/books/<%=b.id%>"><%=b.title %></a> </li>
- 
- <% end %>
+   <li><a href="/books/<%=b.id%>"><%=b.title %></a></li>
+<% end %>

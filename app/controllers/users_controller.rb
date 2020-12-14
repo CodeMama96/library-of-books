@@ -4,16 +4,6 @@ get '/signup' do
   erb :"users/index"
 end
 
-# post "/signup" do 
-#   user = User.new(email: params["email"], password: params["password"])
-#   if user.email.blank? || user.password.blank? || User.find_by_email(params["email"])
-#     redirect '/signup'
-#   else
-#       user.save 
-#       session[:user_id] = user.id # "log them in" #storing them inside the session, stored inside a cookie
-#       redirect '/books'
-#   end
-# end
 
 post "/signup" do
   user = User.new(params) 
