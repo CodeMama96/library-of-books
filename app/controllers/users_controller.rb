@@ -45,14 +45,13 @@ get '/logout' do
     redirect to '/signup'
 end
 
-get "/users/:id" do # get info on each user #argument for a method
-  if !logged_in?
-    redirect "/login"
-  end
-  @user = User.find_by_id(params["id"]) 
-  @books = Book.find_by(params["user_id"]) # added 
-  #erb :"/users/edit"
-end
+# get "/users/:id" do # get info on each user #argument for a method
+#   if !logged_in?
+#     redirect "/login"
+#   end
+#   # @user = User.find_by_id(params["id"]) 
+#   # @books = Book.find_by(params["user_id"]) # added 
+# end
 
 
 end

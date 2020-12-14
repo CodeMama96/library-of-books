@@ -31,7 +31,6 @@ class BooksController < ApplicationController
   # GET: /books/5
   get "/books/:id" do
     if logged_in?
-      @books = Book.all
       @book = Book.find_by_id(params["id"])
       erb :"/books/show"
     else 
