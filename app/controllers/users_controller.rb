@@ -12,7 +12,7 @@ post "/signup" do
     redirect "/signup"
   else
       user.save
-      flash[:message] = "Signup successful. Please login now."
+      flash[:message] = "Signup successful. Please continue below."
       session[:user_id] = user.id 
       redirect "/books"
   end

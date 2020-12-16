@@ -41,19 +41,20 @@ class BooksController < ApplicationController
     #CREATE a new book
   post '/books' do
     @book = Book.new(title: params["title"], author: params["author"], user_id: session[:user_id])
-      if !logged_in?
-      #   if @book.save
-      #     redirect "/books/#{@book.id}"
-      #   else 
-      #     redirect'/books/new'
-      #   end
-      # else
+      if logged_in?
+        if @book.save
+          redirect "/books/#{@book.id}"
+        else 
+          redirect'/books/new'
+        end
+      else
         redirect '/'
       end
     end
 
   # UPDATE a book
-  get "/books/:id/edit" do
+  get "/books/:id/edit" do #arguments of the methods
+    
     @book = Book.find(params["id"])
       if @book.user.id == current_user.id
         erb :"/books/edit"

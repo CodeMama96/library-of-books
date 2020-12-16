@@ -4,6 +4,10 @@
   <p style="font-size:20px">Logged in user:  <%= current_user.email %></p>
 <% end %>
 <br>
+
+
+
+<br>
 <% if logged_in?
   if flash.has?(:message) %>
    <p style="color: red"><%= flash[:message] %></p>
