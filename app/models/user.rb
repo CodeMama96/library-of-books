@@ -6,10 +6,4 @@ class User < ActiveRecord::Base
     validates :email, presence: true
 end
 
-#uniqueness makes sure the same email isn't used twice.
-#and then that message shows if it violates
-
-
- # ActiveRecord method (predefined)
-    # provides a reader/writer method for password
 

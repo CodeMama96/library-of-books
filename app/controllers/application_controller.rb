@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'variousrandomletters' 
   end
 
-  get "/" do #get mthod with a '/' as an argument and it's being rendered to the welcome page
+  get "/" do 
     erb :welcome
   end
 
@@ -18,17 +18,20 @@ class ApplicationController < Sinatra::Base
     erb :error
   end
 
-  helpers do #helper methods that can be use anywhere within the application
-
+  helpers do 
     def logged_in?
         !!current_user
     end
 
     def current_user 
         @current_user ||=  User.find(session[:user_id]) if session[:user_id]
-        #storing them inside the session, stored inside a cookie
     end
     
+    def user_delete?
+      if @current_user ||=  User.find(session[:user_id]) if session[:user_id]
+        binding.pry
+      end
+    end
   end
 
 end

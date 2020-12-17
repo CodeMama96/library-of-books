@@ -8,7 +8,7 @@ end
 post "/signup" do
   user = User.new(params) 
   if !user.save
-    flash[:message] = "Wrong email or password." #user.errors.full_messages.join(" // ")
+    flash[:message] = "Wrong email or password."
     redirect "/signup"
   else
       user.save
@@ -27,10 +27,6 @@ end
 post '/login' do
   @user = User.find_by(email: params["email"])
   if @user && @user.authenticate(params[:password])
-    #In the code below, we see how we can ensure that we have a User AND that that User
-    #is authenticated. If the user authenticates, we'll set the session[:password] and
-    # redirect to the /books route. Otherwise, we'll redirect to the '/'' route
-    # so our user can try again.
     session[:user_id] = @user.id
     redirect to '/books'
   else
@@ -40,8 +36,7 @@ post '/login' do
 end
 
 get '/logout' do 
-    session.delete(:user_id)  # delete just the user_id 
-    # session.clear 
+    session.delete(:user_id)
     redirect to '/signup'
 end
 
