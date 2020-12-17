@@ -2,11 +2,11 @@ class BooksController < ApplicationController
 
   # GET: /books
   get "/books" do
-    if logged_in?     
-      @books = current_user.books
+    if logged_in?
+      @books = Book.all
       erb :"/books/index"
-      else 
-        redirect '/'
+    else
+      redirect '/'
     end
   end
 
@@ -14,15 +14,6 @@ class BooksController < ApplicationController
   get "/books/new" do
     if logged_in?
       erb :"/books/new"
-    else
-      redirect '/'
-    end
-  end
-
-  get "/books/all" do
-    if logged_in?
-      @books = Book.all
-      erb :"/books/all"
     else
       redirect '/'
     end
@@ -53,10 +44,9 @@ class BooksController < ApplicationController
     end
 
   # UPDATE a book
-  get "/books/:id/edit" do #arguments of the methods
-    
+  get "/books/:id/edit" do 
     @book = Book.find(params["id"])
-      if @book.user.id == current_user.id
+      if protect?
         erb :"/books/edit"
       else
         flash[:message] = "You cannot edit this book!"
@@ -66,7 +56,7 @@ class BooksController < ApplicationController
    
   put '/books/:id' do
     @book = Book.find(params["id"]) 
-    if @book.user.id == current_user.id 
+    if protect? 
       @book.update(params["book"])
     end
       redirect "/books/#{@book.id}"
@@ -74,7 +64,7 @@ class BooksController < ApplicationController
   
   delete "/books/:id" do
     @book = Book.find(params["id"])
-    if @book.user.id == current_user.id 
+    if protect? 
       @book.destroy
     else
     flash[:message] = "You cannot delete this book!"

@@ -1,19 +1,10 @@
-<br> <p style="font-size:35px">Here are your Books!  </p>
+<br> <p style="font-size:30px">Here Are All Of The Books!  </p>
 
 <% if logged_in?  %>
   <p style="font-size:20px">Logged in user:  <%= current_user.email %></p>
 <% end %>
 <br>
 
-
-
-<br>
-<% if logged_in?
-  if flash.has?(:message) %>
-   <p style="color: red"><%= flash[:message] %></p>
-  <% end %>
-<% end %>
-<br>
 <% @books.each do |b|  %> 
   <li><a href="/books/<%=b.id%>"><%=b.title %></a> </li>
 <% end %>

@@ -24,8 +24,9 @@
     <% end %>
         <%= yield %>
         <%if session[:user_id]%>
+        <a href="/users/all">View Your Books</a><br>
         <a href="/books/new">Add New Books Here</a><br>
-        <a href="/books/all">Here Are All The Books</a><br>
+        <a href="/books">Here Are All The Books</a><br><br>
         <a href="/logout">Log Out</a>
         <%end%>
       <footer class="branding">
